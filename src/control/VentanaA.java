@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 //AWT - Peligro
 import javafx.stage.Stage;
 import main.Main;
+import model.EmailsData;
 
 public class VentanaA implements Initializable{
 
@@ -29,23 +30,21 @@ public class VentanaA implements Initializable{
     	email = "alfa@a.com";
     	
     }
+    
+    static String a="alfa";
 
     @FXML
     void submit(ActionEvent event) throws Exception{
-    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/VentanaB.fxml"));		
-		loader.setController(new VentanaB(emailTF.getText()));
-		Parent parent = (Parent) loader.load();
-		
-		Stage stage = new Stage();
-		Scene scene = new Scene(parent);
-		stage.setScene(scene);
-		
-		stage.show();
+    	//Agregar el email al registro
+    	String email = emailTF.getText();
+    	EmailsData.addEmail(email);
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		emailTF.setText(email);
 	}
+	
+	//Constructor -> Initialize (UI)
 
 }
